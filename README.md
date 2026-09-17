@@ -1,7 +1,8 @@
 # Dotfiles
 
-Configuración de nvim, omarchy y un timer de systemd por usuario que alimenta
-la pestaña "OpenCode" del panel de agentes de omarchy.
+Configuración de nvim, hyprland (bindings/input/looknfeel/autostart),
+omarchy y un timer de systemd por usuario que alimenta la pestaña "OpenCode"
+del panel de agentes de omarchy.
 
 ## Instalación en una máquina nueva
 
