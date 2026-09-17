@@ -1,0 +1,13 @@
+[Unit]
+Description=Update the OpenCode agent usage record for Omarchy
+Documentation=man:omarchy-agent-usage-update(1)
+
+[Service]
+Type=oneshot
+Environment=XDG_DATA_HOME=%h/.local/share
+Environment=XDG_STATE_HOME=%h/.local/state
+Environment=XDG_CACHE_HOME=%h/.cache
+ExecStart=%h/.local/bin/omarchy-agent-usage-opencode --output %h/.local/state/omarchy/agents/usage/opencode.json
+
+[Install]
+WantedBy=multi-user.target

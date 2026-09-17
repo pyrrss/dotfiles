@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh the OpenCode usage record for the Omarchy agents panel
+Documentation=man:omarchy-agent-usage-update(1)
+
+[Timer]
+OnActiveSec=15m
+OnUnitActiveSec=15m
+Persistent=true
+RandomizedDelaySec=30
+
+[Install]
+WantedBy=timers.target
