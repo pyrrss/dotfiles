@@ -23,7 +23,7 @@ link_file() {
 while IFS= read -r -d '' file; do
   rel="${file#"$SRC"/}"
   link_file "$rel"
-done < <(find "$SRC" -type f -print0)
+done < <(find "$SRC" \( -type f -o -type l \) -print0)
 
 systemctl --user daemon-reload
 systemctl --user enable --now omarchy-agent-usage-opencode.timer >/dev/null
