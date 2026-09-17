@@ -16,8 +16,3 @@ git clone <url> ~/dotfiles
 ```sh
 ~/dotfiles/install.sh
 ```
-
-El script es idempotente: enlaza por symlinks todo lo que está bajo `home/`
-dentro de tu directorio de inicio, activa el `omarchy-agent-usage-opencode.timer`
-y regenera el registro de uso del agente OpenCode. La pestaña aparece en el
-panel de agentes una vez que opencode haya registrado uso en esa máquina.
