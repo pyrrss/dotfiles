@@ -1,22 +1,22 @@
 # Dotfiles
 
-Config of nvim, omarchy, and a user systemd timer that feeds the
-"OpenCode" tab in the omarchy agents panel.
+Configuración de nvim, omarchy y un timer de systemd por usuario que alimenta
+la pestaña "OpenCode" del panel de agentes de omarchy.
 
-## Install on a new machine
+## Instalación en una máquina nueva
 
 ```sh
 git clone <url> ~/dotfiles
 ~/dotfiles/install.sh
 ```
 
-## Apply again
+## Volver a aplicar
 
 ```sh
 ~/dotfiles/install.sh
 ```
 
-The script is idempotent: it symlinks everything under `home/` into your
-home directory, enables the `omarchy-agent-usage-opencode.timer`, and
-regenerates the usage record for the OpenCode agent. The tab appears in the
-agents panel once opencode has recorded any usage on that machine.
+El script es idempotente: enlaza por symlinks todo lo que está bajo `home/`
+dentro de tu directorio de inicio, activa el `omarchy-agent-usage-opencode.timer`
+y regenera el registro de uso del agente OpenCode. La pestaña aparece en el
+panel de agentes una vez que opencode haya registrado uso en esa máquina.
