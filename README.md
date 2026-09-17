@@ -3,7 +3,7 @@
 Configuración de nvim, hyprland (bindings/input/looknfeel/autostart), kitty,
 omarchy.
 
-## Instalación en una máquina nueva
+## Instalación
 
 ```sh
 git clone https://github.com/pyrrss/dotfiles ~/dotfiles
