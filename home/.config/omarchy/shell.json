@@ -37,7 +37,21 @@
           "id": "omarchy.tray"
         },
         {
-          "id": "omarchy.agents"
+          "id": "omarchy.agents",
+          "providers": {
+            "claude": {
+              "enabled": true
+            },
+            "codex": {
+              "enabled": false
+            },
+            "fireworks": {
+              "enabled": true
+            },
+            "pi": {
+              "enabled": true
+            }
+          }
         },
         {
           "id": "omarchy.bluetooth"

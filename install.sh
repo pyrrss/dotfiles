@@ -27,8 +27,11 @@ done < <(find "$SRC" \( -type f -o -type l \) -print0)
 
 systemctl --user daemon-reload
 systemctl --user enable --now omarchy-agent-usage-opencode.timer >/dev/null
+systemctl --user enable --now omarchy-agent-usage-pi.timer >/dev/null
 
 "$HOME/.local/bin/omarchy-agent-usage-opencode" --force \
   --output "$HOME/.local/state/omarchy/agents/usage/opencode.json"
+"$HOME/.local/bin/omarchy-agent-usage-pi" --force \
+  --output "$HOME/.local/state/omarchy/agents/usage/pi.json"
 
 echo "Installed dotfiles from $REPO_DIR"
