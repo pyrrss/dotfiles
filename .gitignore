@@ -1,0 +1,31 @@
+# Credenciales y estado de runtime: nunca en el repo.
+# La política es explícita: las credenciales de los providers se vuelven a
+# hacer a mano con /login en cada máquina (ver README.md).
+
+# Pi: credenciales, sesiones, catálogos y paquetes instalados.
+home/.pi/agent/auth.json
+home/.pi/agent/sessions/
+home/.pi/agent/gentle-agents/
+home/.pi/agent/npm/
+home/.pi/agent/models-store.json
+home/.pi/agent/crashes.json
+home/.pi/agent/mcp-cache.json
+home/.pi/agent/mcp-npx-cache.json
+home/.pi/agent/mcp-onboarding.json
+home/.pi/agent/mcp-last-seen-version.json
+home/.pi/agent/pi-tui-crash.log
+home/.pi/gentle-ai/agent-status/
+home/.pi/gentle-ai/scratch/
+
+# Tokens de servicios externos.
+home/.config/canva/
+
+# Ruido general.
+**/node_modules/
+**/__pycache__/
+*.pyc
+*.detached-backup*
+.DS_Store
+
+# Binarios que se descargan solos (el binario de impeccable pesa 18 MB).
+home/.agents/skills/**/scripts/bin/

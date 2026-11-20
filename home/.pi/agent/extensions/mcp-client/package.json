@@ -1,0 +1,10 @@
+{
+  "name": "pi-mcp-client",
+  "private": true,
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.24.0"
+  },
+  "pi": {
+    "extensions": ["./index.ts"]
+  }
+}

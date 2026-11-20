@@ -1,11 +1,7 @@
 {
   "bar": {
-    "centerAnchor": "omarchy.clock",
     "layout": {
       "center": [
-        {
-          "id": "omarchy.indicators"
-        },
         {
           "id": "omarchy.clock",
           "format": "ddd d MMM HH:mm",
@@ -13,15 +9,6 @@
           "verticalFormat": "HH\n—\nmm",
           "birthYear": 0,
           "lifeExpectancy": 100
-        },
-        {
-          "id": "omarchy.keyboard-layout"
-        },
-        {
-          "id": "omarchy.weather"
-        },
-        {
-          "id": "omarchy.system-update"
         }
       ],
       "left": [
@@ -37,7 +24,10 @@
           "id": "omarchy.tray"
         },
         {
-          "id": "omarchy.agents",
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "pyrr.agents",
           "providers": {
             "claude": {
               "enabled": true
@@ -47,6 +37,9 @@
             },
             "fireworks": {
               "enabled": true
+            },
+            "opencode": {
+              "enabled": false
             },
             "pi": {
               "enabled": true
@@ -68,7 +61,46 @@
         {
           "id": "omarchy.power"
         }
-      ]
+      ],
+      "centerBegin": [
+        {
+          "id": "omarchy.indicators"
+        }
+      ],
+      "centerEnd": [
+        {
+          "id": "omarchy.elsewhen",
+          "cities": [
+            {
+              "name": "Santiago",
+              "zone": "America/Santiago"
+            },
+            {
+              "name": "London",
+              "zone": "Europe/London"
+            },
+            {
+              "name": "Dubai",
+              "zone": "Asia/Dubai"
+            },
+            {
+              "name": "Tokyo",
+              "zone": "Asia/Tokyo"
+            },
+            {
+              "name": "Los Angeles",
+              "zone": "America/Los_Angeles"
+            }
+          ]
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
+      "tray": []
     },
     "position": "top",
     "transparent": false

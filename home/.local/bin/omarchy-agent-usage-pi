@@ -17,6 +17,7 @@ import fcntl
 import hashlib
 import json
 import os
+import subprocess
 import sys
 import tempfile
 import time
@@ -25,6 +26,14 @@ from pathlib import Path
 
 AGENT_ID = "pi"
 AGENT_NAME = "Pi"
+
+# Omarchy's own opencode collector is the one that knows the Zen endpoint,
+# the credential and the window parsing. It is read from the packaged copy on
+# purpose: the user's own copy of that collector reports local stats only and
+# would answer without any limits.
+ZEN_COLLECTOR = Path(os.environ.get("OMARCHY_PATH") or "/usr/share/omarchy") / "bin" / "omarchy-agent-usage-opencode"
+# The plan behind the meters, said even when the probe cannot answer.
+ZEN_TIER_FALLBACK = "Zen"
 
 SCAN_REUSE_SECONDS = 20
 LIMITS_ONLY_REUSE_SECONDS = 900
@@ -254,7 +263,57 @@ def _cached_local_stats(max_age):
         return stats
 
 
+def zen_subscription():
+    """The Zen plan meters, read through Omarchy's own opencode collector.
+
+    Pi bills the same Zen subscription the opencode CLI would, so the meters
+    that describe the account belong to Pi here: the opencode CLI is not what
+    works on this machine. Asking the packaged collector for the limits only
+    keeps one implementation of that knowledge in one place, and its cache
+    keeps the probe cheap.
+
+    A failed probe is not a failed record: the record still stands, it just
+    carries no meters and keeps its plan label.
+    """
+    empty = {
+        "limits": [],
+        "tierLabel": ZEN_TIER_FALLBACK,
+        "limitsStale": False,
+        "limitsFetchedAt": 0,
+        "usageStatusText": "",
+        "authHelpText": "",
+        "retryAdvised": False,
+    }
+    if not ZEN_COLLECTOR.is_file():
+        return empty
+    try:
+        result = subprocess.run([str(ZEN_COLLECTOR), "--limits-only"], capture_output=True, text=True, timeout=60)
+    except (OSError, subprocess.SubprocessError):
+        return empty
+    if result.returncode != 0 or not result.stdout.strip():
+        return empty
+    try:
+        payload = json.loads(result.stdout)
+    except ValueError:
+        return empty
+    if not isinstance(payload, dict):
+        return empty
+    limits = payload.get("limits")
+    tier = payload.get("tierLabel")
+    text = lambda key: payload.get(key) if isinstance(payload.get(key), str) else ""
+    return {
+        "limits": limits if isinstance(limits, list) else [],
+        "tierLabel": tier if isinstance(tier, str) and tier else ZEN_TIER_FALLBACK,
+        "limitsStale": bool(payload.get("limitsStale")),
+        "limitsFetchedAt": number(payload.get("limitsFetchedAt")),
+        "usageStatusText": text("usageStatusText"),
+        "authHelpText": text("authHelpText"),
+        "retryAdvised": bool(payload.get("retryAdvised")),
+    }
+
+
 def build_record(stats):
+    zen = zen_subscription()
     record = {
         "schemaVersion": 1,
         "id": AGENT_ID,
@@ -264,11 +323,17 @@ def build_record(stats):
         "hasLocalStats": True,
         "hasPromptStats": True,
         "scope": "device",
-        "tierLabel": "",
-        "usageStatusText": "",
-        "authHelpText": "",
-        "limits": [],
+        # Pi bills the same Zen subscription opencode does, so the plan label
+        # is the same one, and the meters below are the account's own.
+        "tierLabel": zen["tierLabel"],
+        "usageStatusText": zen["usageStatusText"],
+        "authHelpText": zen["authHelpText"],
+        "limits": zen["limits"],
+        "limitsStale": zen["limitsStale"],
+        "limitsFetchedAt": zen["limitsFetchedAt"],
     }
+    if zen["retryAdvised"]:
+        record["retryAdvised"] = True
     record.update(stats)
     return record
 

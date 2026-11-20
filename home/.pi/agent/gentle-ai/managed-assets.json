@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "assets": {
+    "agents/gentle-ai-explore.md": "16495da1b47634df5a4f104ece36c2f3f65d07e26424532ab4d311fde16e596a",
+    "agents/gentle-ai-verify.md": "25c835c2f4bd8f932393fd6eda28be1a6833ae019e14d0e36111d61b541436b3",
+    "agents/gentle-ai-worker.md": "a960d740da49f5675b44138f439fa3aa70878603dab44bd7b465ecf5ee0a110d",
+    "agents/jd-fix-agent.md": "d9abfc6e6eb8afd325b6d5221faf172a5dbd263469f4a704c37caaf0255587b2",
+    "agents/jd-judge-a.md": "7d8074facf59c898e9e0fb9daf96f927fb6f49602a35449da50e68ad6675ea2e",
+    "agents/jd-judge-b.md": "83802e7792ad36f80dbffbbf46502ca6ae5b963e460fea97572970ae1f08be0f",
+    "agents/review-readability.md": "9db1806ff9de8ecf825f0318406acfbb910dc5b12f7ceae73580ef5d24726c3c",
+    "agents/review-reliability.md": "cd23b095bafd470107ab03b21d25e171561708d3c9d122caf039f972e15a788c",
+    "agents/review-resilience.md": "dd6e5d971dbd7d90269a61ea2d7f597dfa3ad96677e901efa127ac52c849a7d7",
+    "agents/review-risk.md": "c896e40fd706ce611e6f5fb803193259c23a4471ca1ecac3857c1ddf3a70a432",
+    "chains/4r-review.chain.md": "7d96aabd1426a388d1bde371f141d0c3ba836cee93cd54971a28fe1204942b18",
+    "gentle-ai/support/strict-tdd-verify.md": "ef1705bbf22a41285934705977396bc3fa2ea0bc378f74623343a467cfcb4996",
+    "gentle-ai/support/strict-tdd.md": "ca7a75e8e407a00e367fe0168aba6e45bd8297863b1bd199210b5ca84b562223"
+  }
+}

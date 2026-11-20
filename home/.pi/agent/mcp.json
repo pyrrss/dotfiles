@@ -1,0 +1,21 @@
+{
+    "mcpServers": {
+        "Canva": {
+            "type": "stdio",
+            "timeout": 300,
+            "command": "npx",
+            "args": [
+                "-y",
+                "mcp-remote@latest",
+                "https://api.canva.com/connect/v1/mcp",
+                "8614",
+                "--host",
+                "127.0.0.1",
+                "--static-oauth-client-info",
+                "@/home/pyrr/.config/canva/mcp-client.json",
+                "--auth-timeout",
+                "300"
+            ]
+        }
+    }
+}
